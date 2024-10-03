@@ -1,17 +1,12 @@
 <?php
-// Define the directory where your files are stored
-$directory = './'; // Replace with the path to your files directory
+$files = ['home.php', 'about.php', 'contact.php'];
 
-// Scan the directory for files (you can add file type filters if needed)
-$files = array_diff(scandir($directory), array('..', '.'));
-
-// Set the selected file if posted and it exists in the directory
 $selected_file = isset($_POST['file']) && in_array($_POST['file'], $files) ? $_POST['file'] : 'about.php';
-$filename = $directory . '/' . $selected_file;
+$filename = $selected_file;
 
-// Get the content of the selected file if it exists
 $code = file_exists($filename) ? file_get_contents($filename) : '';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +25,7 @@ $code = file_exists($filename) ? file_get_contents($filename) : '';
         .CodeMirror {
             border: 1px solid #ddd;
             height: auto;
-           
+            max-height: 500px;
         }
     </style>
 </head>
@@ -48,6 +43,8 @@ $code = file_exists($filename) ? file_get_contents($filename) : '';
         <?php endforeach; ?>
     </select>
 </form>
+
+
 
 <textarea id="code" name="code"><?php echo htmlspecialchars($code); ?></textarea>
 

@@ -10,7 +10,6 @@
 <body>
   <h1>About page</h1>
   <p>This is about page</p>
-  
-  
+  <h2>This is h2 page </h2>
 </body>
 </html>
